@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var fs = require("fs")
 
 // Sets up the Express App
 // =============================================================
@@ -21,10 +22,18 @@ app.get("/notes", function (req, res) {
 app.get("/api/notes", function (req, res) {
     fs.readFile(__dirname + "/db/db.json", function (err, data) {
         if (err) throw err;
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(data);
     });
 });
 app.post("/api/notes", function (req, res) {
-
+    var note = res.body
+    fs.readFile(__dirname + "/db/db.json", function (err, data) {
+        if (err) throw err;
+        JSON.parse(data).db.push(note)
+    });
+    res.json(note);
 });
 app.post("/api/notes/:id", function (req, res) {
 
