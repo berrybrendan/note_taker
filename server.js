@@ -2,7 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
-//var fs = require("fs")
+var fs = require("fs")
 
 // Sets up the Express App
 // =============================================================
@@ -31,12 +31,12 @@ app.post("/api/notes", function (req, res) {
     noteObj.push(note);
     res.json(note);
 });
-//app.post("/api/notes/:id", function (req, res) {
+app.post("/api/notes/:id", function (req, res) {
 
-//});
+});
 
 
 
-app.listen(PORT, function () {
+app.listen(process.env.PORT || PORT, function () {
     console.log("App listening on PORT " + PORT);
 });
