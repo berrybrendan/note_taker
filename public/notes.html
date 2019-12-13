@@ -45,11 +45,16 @@
 
     var PORT = 3000
 
+    let i = 0
+
     $(".save-note").on("click", function () {
+
+      i += 1
 
       var newNote = {
         noteTitle: $('.note-title').val().trim(),
-        note: $('.note-textarea').val().trim()
+        note: $('.note-textarea').val().trim(),
+        id: i
       };
 
       console.log(newNote);
@@ -66,7 +71,7 @@
       $('.note-title').val("");
       $('.note-textarea').val("");
     });
-  
+
 
   </script>
 </body>
